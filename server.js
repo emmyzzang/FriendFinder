@@ -15,10 +15,10 @@ const config = require('./config');
 //=====================================================
 
 // ROUTER 
-require('./app/routing/apiRoutes.js')(app);
-require('./app/routing/htmlRoutes.js')(app);
+require('./app/routing/api-routes.js')(app);
+require('./app/routing/html-routes.js')(app);
 
-// LISTENER 
+// PORT LISTENER 
 
 app.listen(PORT, function() {
 	console.log('Listening on Port: ' + PORT); 
