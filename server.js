@@ -10,9 +10,14 @@ const config = require('./config');
 
 // PORT 
 
-// BODY PARSER
 
 //=====================================================
+
+// BODY PARSER
+// Create application/x-www-form-urlencoded parser
+const jsonParser = bodyParser.json();
+//
+const urlencodedParser = bodyParser.urlencoded({ extended: false}); 
 
 // ROUTER 
 require('./app/routing/api-routes.js')(app);
