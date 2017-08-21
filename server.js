@@ -2,26 +2,34 @@
 // NODE DRIVERS 
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
-const config = require('./config'); 
-
-//===================MOVE TO CONFIG FILE=============//
 
 
 // PORT 
+let app = express(); // Allows for bodyParser to call upon the express server 
+const PORT = process.env.PORT || 8080; 
 
-
-//=====================================================
 
 // BODY PARSER
-// Create application/x-www-form-urlencoded parser
-const jsonParser = bodyParser.json();
-//
-const urlencodedParser = bodyParser.urlencoded({ extended: false}); 
+
+// Create application/json parser 
+const jsonParser = bodyParser.json()
+
+// Create application/x-www-form-urlencoded parser 
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+// Parse various different custom JSON types as JSON 
+app.use(bodyParser.json({ type: 'application/*+json' }))
+
+// Parse some custom thing into a Buffer 
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+
+// Parse an HTML body into a string 
+app.use(bodyParser.text({ type: 'text/html'}));
+
 
 // ROUTER 
-require('./app/routing/api-routes.js')(app);
-require('./app/routing/html-routes.js')(app);
+// require('./app/routing/api-routes.js')(app);
+// require('./app/routing/html-routes.js')(app);
 
 // PORT LISTENER 
 
