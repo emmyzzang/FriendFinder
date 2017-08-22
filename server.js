@@ -28,7 +28,7 @@ app.use(bodyParser.text({ type: 'text/html'}));
 
 
 // ROUTER 
-// require('./app/routing/api-routes.js')(app);
+require('./app/routing/api-routes.js')(app);
 require('./app/routing/html-routes.js')(app);
 
 // PORT LISTENER 
