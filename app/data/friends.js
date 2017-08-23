@@ -57,8 +57,9 @@ let friends = [
 		  "5"
 	 	]
 	 },
+
  ];
 
-// Export this module  
+// Export this module (call it by its variable name)
 module.exports = friends; 
 

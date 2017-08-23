@@ -1,7 +1,7 @@
 // Take the module that is being exposed in friends.js because it gives us matches 
 
-const friends = require('../data/friends.js '); 
-
+const friends = require('../data/friends.js'); 
+const app = express(); 
 module.exports = function(app) {
 
 	app.get("/api/friends", function(req, res) {
@@ -39,6 +39,7 @@ module.exports = function(app) {
 			for (let j = 0; j < friends[i].scores[j]; j++) {
 
 				// Calculate the difference between the scores and sum them into the totalDifference
+				// Math absolute is unsigned
 				totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
 
 				// If the sum of differences is less than the differences of the current "best match"
@@ -52,5 +53,14 @@ module.exports = function(app) {
 			}
 		}
 
+			// Finally save the user's data to the database (this has to happen AFTER the check, 
+			// otherwise, the database will always return that the user is the user's best friend)
+			friends.push(userData); 
+
+		// Return a JSON with a user's bestMatch. This will be used by the HTML
+		// In the next page
+		res.json(bestMatch); // Return this back to the frontend of the app 
 
 	}); 
+
+

@@ -2,7 +2,7 @@
 // NODE DRIVERS 
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const path = require("path"); 
 
 // PORT 
 let app = express(); // Allows for bodyParser to call upon the express server 
@@ -11,11 +11,11 @@ const PORT = process.env.PORT || 8080;
 
 // BODY PARSER
 
-// Create application/json parser 
-const jsonParser = bodyParser.json()
+// // Create application/json parser 
+// const jsonParser = bodyParser.json()
 
 // Create application/x-www-form-urlencoded parser 
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Parse various different custom JSON types as JSON 
 app.use(bodyParser.json({ type: 'application/*+json' }))
